@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useNavigate } from 'react-router-dom';
 import { db, MUSCLE_GROUP_COLORS, MUSCLE_GROUP_LABELS, MUSCLE_GROUPS } from '../db';
-import { Search, Plus, X, ChevronRight } from 'lucide-react';
+import { Search, Plus, X, ChevronRight, Play } from 'lucide-react';
+import ExerciseDemoModal from '../components/ExerciseDemoModal';
 
 export default function ExerciseLibrary() {
   const exercises = useLiveQuery(() => db.exercises.toArray());
   const [searchTerm, setSearchTerm] = useState('');
   const [showAdd, setShowAdd] = useState(false);
+  const [demoExercise, setDemoExercise] = useState(null);
   const [newName, setNewName] = useState('');
   const [newGroup, setNewGroup] = useState('chest');
   const navigate = useNavigate();
@@ -85,14 +87,23 @@ export default function ExerciseLibrary() {
 
           <div className="space-y-1">
             {exs.map((ex) => (
-              <button
+              <div
                 key={ex.id}
-                onClick={() => navigate(`/exercises/${ex.id}`)}
-                className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm transition-colors hover:bg-[var(--color-bg-card)] active:bg-[var(--color-bg-card)]"
+                className="flex w-full items-center justify-between rounded-xl px-1 hover:bg-[var(--color-bg-card)] transition-colors"
               >
-                <span className="font-medium">{ex.name}</span>
-                <ChevronRight size={16} className="text-[var(--color-text-muted)]" />
-              </button>
+                <button
+                  onClick={() => navigate(`/exercises/${ex.id}`)}
+                  className="flex-1 py-3 pl-2 text-left text-sm font-medium active:scale-[0.99]"
+                >
+                  {ex.name}
+                </button>
+                <button
+                  onClick={() => setDemoExercise(ex)}
+                  className="p-3 text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent)] active:scale-95"
+                >
+                  <Play size={16} />
+                </button>
+              </div>
             ))}
           </div>
         </div>
@@ -152,6 +163,14 @@ export default function ExerciseLibrary() {
             </div>
           </div>
         </div>
+      )}
+
+      {demoExercise && (
+        <ExerciseDemoModal
+          isOpen={!!demoExercise}
+          onClose={() => setDemoExercise(null)}
+          exercise={demoExercise}
+        />
       )}
     </div>
   );
