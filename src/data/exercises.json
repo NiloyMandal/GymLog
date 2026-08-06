@@ -16976,5 +16976,436 @@
       "Repeat for the desired number of repetitions."
     ],
     "videoUrl": "/videos/exercises/0859.gif"
+  },
+  {
+    "id": "lat-pulldown",
+    "name": "Lat Pulldown",
+    "muscleGroup": "Back",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Retract shoulder blades",
+      "Pull elbows down to ribs",
+      "Control eccentric return"
+    ]
+  },
+  {
+    "id": "t-bar-row",
+    "name": "T-Bar Row",
+    "muscleGroup": "Back",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Hinge at hips with flat back",
+      "Drive elbows behind torso",
+      "Squeeze scapula at top"
+    ]
+  },
+  {
+    "id": "seated-cable-row",
+    "name": "Seated Cable Row",
+    "muscleGroup": "Back",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep torso upright",
+      "Do not swing backward",
+      "Pull handle to lower stomach"
+    ]
+  },
+  {
+    "id": "single-arm-db-row",
+    "name": "Single-Arm Dumbbell Row",
+    "muscleGroup": "Back",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Brace opposite hand on bench",
+      "Pull weight toward hip",
+      "Keep back neutral"
+    ]
+  },
+  {
+    "id": "barbell-bicep-curl",
+    "name": "Barbell Biceps Curl",
+    "muscleGroup": "Arms",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep elbows pinned to sides",
+      "Do not swing hips",
+      "Full extension at bottom"
+    ]
+  },
+  {
+    "id": "preacher-curl",
+    "name": "Preacher Curl",
+    "muscleGroup": "Arms",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Rest upper arm flat on pad",
+      "Lower bar with control",
+      "Avoid locking elbows forcefully"
+    ]
+  },
+  {
+    "id": "seated-db-shoulder-press",
+    "name": "Seated Dumbbell Overhead Press",
+    "muscleGroup": "Shoulders",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Press dumbbells in upward arc",
+      "Keep wrists stacked over elbows",
+      "Do not arch lower back"
+    ]
+  },
+  {
+    "id": "db-lateral-raise",
+    "name": "Dumbbell Lateral Raise",
+    "muscleGroup": "Shoulders",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Slight bend in elbows",
+      "Raise arms to shoulder height",
+      "Lead with elbows"
+    ]
+  },
+  {
+    "id": "cable-face-pull",
+    "name": "Cable Face Pull",
+    "muscleGroup": "Shoulders",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Use rope attachment",
+      "Pull towards upper face/eyes",
+      "Externally rotate wrists at top"
+    ]
+  },
+  {
+    "id": "db-shrug",
+    "name": "Dumbbell Shrugs",
+    "muscleGroup": "Shoulders",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Elevate shoulders straight up",
+      "Hold squeeze for 1 second",
+      "Do not roll shoulders"
+    ]
+  },
+  {
+    "id": "steady-state-cardio",
+    "name": "Low-Intensity Steady Cardio",
+    "muscleGroup": "Cardio",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Maintain conversational pace",
+      "Focus on nasal breathing if possible"
+    ]
+  },
+  {
+    "id": "barbell-bench-press",
+    "name": "Barbell Bench Press (Flat)",
+    "muscleGroup": "Chest",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Retract shoulder blades",
+      "Plant feet firmly on floor",
+      "Lower bar to mid-chest"
+    ]
+  },
+  {
+    "id": "incline-db-press",
+    "name": "Incline Dumbbell Press (30°)",
+    "muscleGroup": "Chest",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Set bench angle to 30 degrees",
+      "Lower dumbbells to upper chest",
+      "Press up and slightly inward"
+    ]
+  },
+  {
+    "id": "pec-deck-fly",
+    "name": "Pec Deck Machine Fly",
+    "muscleGroup": "Chest",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep slight bend in elbows",
+      "Squeeze chest at center",
+      "Control opening stretch"
+    ]
+  },
+  {
+    "id": "high-to-low-cable-crossover",
+    "name": "High-to-Low Cable Crossover",
+    "muscleGroup": "Chest",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Set pulleys to high position",
+      "Bring hands together at waist level",
+      "Keep chest tall"
+    ]
+  },
+  {
+    "id": "tricep-rope-pushdown",
+    "name": "Triceps Rope Pushdown",
+    "muscleGroup": "Arms",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep upper arms stationary",
+      "Spread rope apart at bottom",
+      "Lock out elbows fully"
+    ]
+  },
+  {
+    "id": "ez-bar-skullcrusher",
+    "name": "EZ-Bar Skull Crusher",
+    "muscleGroup": "Arms",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Lower bar toward forehead/behind head",
+      "Keep elbows pointing straight up",
+      "Extend wrists to lockout"
+    ]
+  },
+  {
+    "id": "machine-shoulder-press",
+    "name": "Machine Shoulder Press",
+    "muscleGroup": "Shoulders",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Press handles overhead",
+      "Keep upper back flat against pad",
+      "Control eccentric lowering"
+    ]
+  },
+  {
+    "id": "cable-lateral-raise",
+    "name": "Single-Arm Cable Lateral Raise",
+    "muscleGroup": "Shoulders",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep constant tension at bottom",
+      "Raise handle to shoulder height",
+      "Stand tall without leaning"
+    ]
+  },
+  {
+    "id": "reverse-pec-deck-fly",
+    "name": "Reverse Pec Deck Fly",
+    "muscleGroup": "Shoulders",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Press chest against pad",
+      "Sweep arms outward behind torso",
+      "Focus on rear delts, not traps"
+    ]
+  },
+  {
+    "id": "hanging-leg-raise",
+    "name": "Hanging Leg / Knee Raise",
+    "muscleGroup": "Core",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Tilt pelvis upward at top",
+      "Avoid swinging",
+      "Control lower leg descent"
+    ]
+  },
+  {
+    "id": "lying-crunch",
+    "name": "Lying Abdominal Crunch",
+    "muscleGroup": "Core",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Exhale fully at top contraction",
+      "Keep lower back on mat",
+      "Do not pull on neck"
+    ]
+  },
+  {
+    "id": "plank-hold",
+    "name": "Plank Hold",
+    "muscleGroup": "Core",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep body straight from head to heels",
+      "Brace core and squeeze glutes",
+      "Do not let hips sag"
+    ]
+  },
+  {
+    "id": "alternating-db-curl",
+    "name": "Alternating Dumbbell Curl",
+    "muscleGroup": "Arms",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Supinate wrist upward at top",
+      "Keep elbows fixed",
+      "Alternate arms cleanly"
+    ]
+  },
+  {
+    "id": "incline-db-hammer-curl",
+    "name": "Incline Dumbbell Hammer Curl",
+    "muscleGroup": "Arms",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep palms facing each other",
+      "Let arms hang straight down on incline",
+      "Curl without swinging shoulder"
+    ]
+  },
+  {
+    "id": "overhead-cable-tricep-extension",
+    "name": "Overhead Cable Triceps Extension",
+    "muscleGroup": "Arms",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep elbows pointed forward",
+      "Extend arms fully overhead",
+      "Feel stretch in long head of triceps"
+    ]
+  },
+  {
+    "id": "parallel-bar-dip",
+    "name": "Parallel Bar Dips",
+    "muscleGroup": "Arms",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep torso upright to target triceps",
+      "Lower until elbows reach 90 degrees",
+      "Press up to full lockout"
+    ]
+  },
+  {
+    "id": "cable-concentration-curl",
+    "name": "Cable Concentration Curl",
+    "muscleGroup": "Arms",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Lock upper arm in fixed position",
+      "Squeeze bicep peak at top",
+      "Use light weight for strict isolation"
+    ]
+  },
+  {
+    "id": "tricep-cable-kickback",
+    "name": "Triceps Cable Kickback",
+    "muscleGroup": "Arms",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep upper arm parallel to floor",
+      "Extend forearm back fully",
+      "Hold squeeze for 1 second"
+    ]
+  },
+  {
+    "id": "barbell-back-squat",
+    "name": "Barbell Back Squat",
+    "muscleGroup": "Legs",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep chest proud and core braced",
+      "Squat to parallel or slightly below",
+      "Drive through mid-foot"
+    ]
+  },
+  {
+    "id": "leg-press-45",
+    "name": "45° Leg Press",
+    "muscleGroup": "Legs",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Do not lock out knees at top",
+      "Lower sled until 90-degree knee bend",
+      "Keep lower back flat against seat"
+    ]
+  },
+  {
+    "id": "romanian-deadlift",
+    "name": "Romanian Deadlift",
+    "muscleGroup": "Legs",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Hinge at hips with soft knees",
+      "Keep bar/dumbbells close to shins",
+      "Feel stretch in hamstrings"
+    ]
+  },
+  {
+    "id": "lying-leg-curl",
+    "name": "Lying Leg Curl",
+    "muscleGroup": "Legs",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep hips pressed into pad",
+      "Curl heels toward glutes",
+      "Control eccentric lowering"
+    ]
+  },
+  {
+    "id": "leg-extension-machine",
+    "name": "Leg Extension Machine",
+    "muscleGroup": "Legs",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Align knee joint with machine pivot",
+      "Pause and squeeze quads at top",
+      "Lower weight with control"
+    ]
+  },
+  {
+    "id": "standing-calf-raise",
+    "name": "Standing Calf Raise",
+    "muscleGroup": "Legs",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Lower heels for full stretch",
+      "Rise up onto balls of feet",
+      "Pause at top contraction"
+    ]
+  },
+  {
+    "id": "mountain-climber",
+    "name": "Mountain Climbers",
+    "muscleGroup": "Core",
+    "defaultUnit": "kg",
+    "videoUrl": "/videos/placeholder.webm",
+    "formCues": [
+      "Keep shoulders stacked over wrists",
+      "Drive knees toward chest briskly",
+      "Keep hips level"
+    ]
   }
 ]

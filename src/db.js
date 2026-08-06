@@ -49,86 +49,215 @@ import SEED_EXERCISES from './data/exercises.json';
 
 const SEED_ROUTINES_TEMPLATE = [
   {
-    name: 'Mon: Back + Biceps',
-    exerciseNames: [
-      { name: 'pull-up', targetSets: 3, targetReps: 10 },
-      { name: 'reverse grip machine lat pulldown', targetSets: 3, targetReps: 10 },
-      { name: 'lever reverse t-bar row', targetSets: 3, targetReps: 10 },
-      { name: 'dumbbell bent over row', targetSets: 3, targetReps: 10 },
-      { name: 'barbell deadlift', targetSets: 3, targetReps: 10 },
-      { name: 'cable seated row', targetSets: 3, targetReps: 10 },
-      { name: 'barbell curl', targetSets: 3, targetReps: 10 },
-      { name: 'barbell preacher curl', targetSets: 3, targetReps: 10 },
-    ],
+    "name": "Monday: Back & Biceps",
+    "exerciseNames": [
+      {
+        "name": "Lat Pulldown",
+        "targetSets": 3,
+        "targetReps": "8-10"
+      },
+      {
+        "name": "T-Bar Row",
+        "targetSets": 3,
+        "targetReps": "8-10"
+      },
+      {
+        "name": "Seated Cable Row",
+        "targetSets": 3,
+        "targetReps": "10-12"
+      },
+      {
+        "name": "Single-Arm Dumbbell Row",
+        "targetSets": 2,
+        "targetReps": "10-12"
+      },
+      {
+        "name": "Barbell Biceps Curl",
+        "targetSets": 3,
+        "targetReps": "10-12"
+      },
+      {
+        "name": "Preacher Curl",
+        "targetSets": 3,
+        "targetReps": "12-15"
+      }
+    ]
   },
   {
-    name: 'Tue: Shoulders + Deltoids',
-    exerciseNames: [
-      { name: 'barbell seated overhead press', targetSets: 3, targetReps: 10 },
-      { name: 'dumbbell lateral raise', targetSets: 3, targetReps: 10 },
-      { name: 'cable one arm lateral raise', targetSets: 3, targetReps: 10 },
-      { name: 'smith rear delt row', targetSets: 3, targetReps: 10 },
-      { name: 'cable upright row', targetSets: 3, targetReps: 10 },
-      { name: 'dumbbell shrug', targetSets: 3, targetReps: 10 },
-      { name: 'jump rope', targetSets: 3, targetReps: 10 },
-    ],
+    "name": "Tuesday: Shoulders & Traps",
+    "exerciseNames": [
+      {
+        "name": "Seated Dumbbell Overhead Press",
+        "targetSets": 3,
+        "targetReps": "8-10"
+      },
+      {
+        "name": "Dumbbell Lateral Raise",
+        "targetSets": 3,
+        "targetReps": "12-15"
+      },
+      {
+        "name": "Cable Face Pull",
+        "targetSets": 3,
+        "targetReps": "12-15"
+      },
+      {
+        "name": "Dumbbell Shrugs",
+        "targetSets": 3,
+        "targetReps": "10-12"
+      },
+      {
+        "name": "Low-Intensity Steady Cardio",
+        "targetSets": 1,
+        "targetReps": "15-20 min"
+      }
+    ]
   },
   {
-    name: 'Wed: Chest + Triceps',
-    exerciseNames: [
-      { name: 'barbell incline bench press', targetSets: 3, targetReps: 10 },
-      { name: 'dumbbell bench press', targetSets: 3, targetReps: 10 },
-      { name: 'cable decline fly', targetSets: 3, targetReps: 10 },
-      { name: 'cable cross-over variation', targetSets: 3, targetReps: 10 },
-      { name: 'chest dip', targetSets: 3, targetReps: 10 },
-      { name: 'cable triceps pushdown (v-bar)', targetSets: 3, targetReps: 10 },
-      { name: 'barbell lying triceps extension skull crusher', targetSets: 3, targetReps: 10 },
-    ],
+    "name": "Wednesday: Chest & Triceps",
+    "exerciseNames": [
+      {
+        "name": "Barbell Bench Press (Flat)",
+        "targetSets": 3,
+        "targetReps": "6-8"
+      },
+      {
+        "name": "Incline Dumbbell Press (30°)",
+        "targetSets": 3,
+        "targetReps": "8-10"
+      },
+      {
+        "name": "Pec Deck Machine Fly",
+        "targetSets": 3,
+        "targetReps": "12-15"
+      },
+      {
+        "name": "High-to-Low Cable Crossover",
+        "targetSets": 2,
+        "targetReps": "12-15"
+      },
+      {
+        "name": "Triceps Rope Pushdown",
+        "targetSets": 3,
+        "targetReps": "10-12"
+      },
+      {
+        "name": "EZ-Bar Skull Crusher",
+        "targetSets": 3,
+        "targetReps": "10-12"
+      }
+    ]
   },
   {
-    name: 'Thu: Shoulders + Abs',
-    exerciseNames: [
-      { name: 'barbell seated overhead press', targetSets: 3, targetReps: 10 },
-      { name: 'dumbbell lateral raise', targetSets: 3, targetReps: 10 },
-      { name: 'cable one arm lateral raise', targetSets: 3, targetReps: 10 },
-      { name: 'smith rear delt row', targetSets: 3, targetReps: 10 },
-      { name: 'cable upright row', targetSets: 3, targetReps: 10 },
-      { name: 'dumbbell shrug', targetSets: 3, targetReps: 10 },
-      { name: 'jump rope', targetSets: 3, targetReps: 10 },
-      { name: 'hanging leg raise', targetSets: 3, targetReps: 10 },
-      { name: 'band hip lift', targetSets: 3, targetReps: 10 },
-      { name: 'flexion leg sit up (bent knee)', targetSets: 3, targetReps: 10 },
-      { name: 'cable side crunch', targetSets: 3, targetReps: 10 },
-      { name: 'mountain climber', targetSets: 3, targetReps: 10 },
-      { name: 'power point plank', targetSets: 3, targetReps: 10 },
-    ],
+    "name": "Thursday: Shoulders, Rear Delts & Core",
+    "exerciseNames": [
+      {
+        "name": "Machine Shoulder Press",
+        "targetSets": 3,
+        "targetReps": "10-12"
+      },
+      {
+        "name": "Single-Arm Cable Lateral Raise",
+        "targetSets": 3,
+        "targetReps": "12-15"
+      },
+      {
+        "name": "Reverse Pec Deck Fly",
+        "targetSets": 3,
+        "targetReps": "12-15"
+      },
+      {
+        "name": "Hanging Leg / Knee Raise",
+        "targetSets": 3,
+        "targetReps": "10-15"
+      },
+      {
+        "name": "Lying Abdominal Crunch",
+        "targetSets": 3,
+        "targetReps": "15-20"
+      },
+      {
+        "name": "Plank Hold",
+        "targetSets": 3,
+        "targetReps": "45-60s"
+      }
+    ]
   },
   {
-    name: 'Fri: Arms',
-    exerciseNames: [
-      { name: 'barbell curl', targetSets: 3, targetReps: 10 },
-      { name: 'barbell lying triceps extension skull crusher', targetSets: 3, targetReps: 10 },
-      { name: 'barbell preacher curl', targetSets: 3, targetReps: 10 },
-      { name: 'barbell seated overhead triceps extension', targetSets: 3, targetReps: 10 },
-      { name: 'dumbbell hammer curl', targetSets: 3, targetReps: 10 },
-      { name: 'three bench dip', targetSets: 3, targetReps: 10 },
-      { name: 'dumbbell concentration curl', targetSets: 3, targetReps: 10 },
-      { name: 'dumbbell kickback', targetSets: 3, targetReps: 10 },
-      { name: 'cable seated curl', targetSets: 3, targetReps: 10 },
-    ],
+    "name": "Friday: Arms Focus",
+    "exerciseNames": [
+      {
+        "name": "Alternating Dumbbell Curl",
+        "targetSets": 3,
+        "targetReps": "10-12"
+      },
+      {
+        "name": "Incline Dumbbell Hammer Curl",
+        "targetSets": 3,
+        "targetReps": "10-12"
+      },
+      {
+        "name": "Overhead Cable Triceps Extension",
+        "targetSets": 3,
+        "targetReps": "10-12"
+      },
+      {
+        "name": "Parallel Bar Dips",
+        "targetSets": 3,
+        "targetReps": "8-12"
+      },
+      {
+        "name": "Cable Concentration Curl",
+        "targetSets": 2,
+        "targetReps": "12-15"
+      },
+      {
+        "name": "Triceps Cable Kickback",
+        "targetSets": 2,
+        "targetReps": "12-15"
+      }
+    ]
   },
   {
-    name: 'Sat: Legs + Abs + Cardio',
-    exerciseNames: [
-      { name: 'barbell full squat', targetSets: 3, targetReps: 10 },
-      { name: 'smith leg press', targetSets: 3, targetReps: 10 },
-      { name: 'sled hack squat', targetSets: 3, targetReps: 10 },
-      { name: 'lever leg extension', targetSets: 3, targetReps: 10 },
-      { name: 'lever lying leg curl', targetSets: 3, targetReps: 10 },
-      { name: 'sissy squat', targetSets: 3, targetReps: 10 },
-      { name: 'split squats', targetSets: 3, targetReps: 10 },
-    ],
-  },
+    "name": "Saturday: Legs, Core & Cardio",
+    "exerciseNames": [
+      {
+        "name": "Barbell Back Squat",
+        "targetSets": 3,
+        "targetReps": "6-8"
+      },
+      {
+        "name": "45° Leg Press",
+        "targetSets": 3,
+        "targetReps": "10-12"
+      },
+      {
+        "name": "Romanian Deadlift",
+        "targetSets": 3,
+        "targetReps": "8-10"
+      },
+      {
+        "name": "Lying Leg Curl",
+        "targetSets": 3,
+        "targetReps": "10-12"
+      },
+      {
+        "name": "Leg Extension Machine",
+        "targetSets": 3,
+        "targetReps": "12-15"
+      },
+      {
+        "name": "Standing Calf Raise",
+        "targetSets": 4,
+        "targetReps": "12-15"
+      },
+      {
+        "name": "Mountain Climbers",
+        "targetSets": 3,
+        "targetReps": "15-20"
+      }
+    ]
+  }
 ];
 
 export async function initDB() {
