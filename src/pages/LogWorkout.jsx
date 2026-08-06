@@ -293,6 +293,7 @@ export default function LogWorkout() {
     const today = new Date().toISOString().split('T')[0];
 
     await db.workoutLogs.add({
+      id: crypto.randomUUID(),
       date: today,
       routineId: selectedRoutineId,
       exercises: workoutExercises.map((ex) => ({

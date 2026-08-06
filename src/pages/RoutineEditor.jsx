@@ -82,7 +82,7 @@ export default function RoutineEditor() {
     if (isEditing) {
       await db.routines.update(id, data);
     } else {
-      await db.routines.add(data);
+      await db.routines.add({ id: crypto.randomUUID(), ...data });
     }
     navigate('/routines');
   };

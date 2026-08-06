@@ -49,21 +49,14 @@ export default function ExerciseDemoModal({
           </button>
         </div>
 
-        {/* Video Player */}
-        <div className="relative flex aspect-video w-full items-center justify-center border-b border-[var(--color-border)] bg-black">
-          {exercise.videoUrl ? (
-            <video
-              src={exercise.videoUrl}
-              className="h-full w-full object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-            />
+        {/* Media area */}
+        <div className="relative aspect-video w-full bg-black shrink-0 overflow-hidden border-b border-[var(--color-border)]">
+          {exercise.images && exercise.images.length > 0 ? (
+            <ExerciseAnimation images={exercise.images} />
           ) : (
-            <div className="flex flex-col items-center justify-center text-[var(--color-text-muted)]">
-              <p className="text-sm font-medium">Video preview not available</p>
+            <div className="flex h-full w-full items-center justify-center text-sm text-[var(--color-text-muted)] gap-2">
+              <AlertCircle size={16} />
+              Animation not available
             </div>
           )}
         </div>

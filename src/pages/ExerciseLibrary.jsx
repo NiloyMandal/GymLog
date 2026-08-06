@@ -25,6 +25,7 @@ export default function ExerciseLibrary() {
   const handleAdd = async () => {
     if (!newName.trim()) return;
     await db.exercises.add({
+      id: crypto.randomUUID(),
       name: newName.trim(),
       muscleGroup: newGroup,
       defaultUnit: 'kg',

@@ -163,7 +163,7 @@ export default function Progress() {
     if (isNaN(weight) || weight <= 0) return;
     const kgWeight = inputToKg(weight, settings.unit);
     const today = new Date().toISOString().split('T')[0];
-    await db.bodyMetrics.add({ date: today, bodyweight: kgWeight });
+    await db.bodyMetrics.add({ id: crypto.randomUUID(), date: today, bodyweight: kgWeight });
     setBwInput('');
     setShowBodyweightForm(false);
   };
