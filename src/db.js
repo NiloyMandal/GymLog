@@ -107,7 +107,18 @@ export async function seedDatabase() {
     for (const ex of existingExercises) {
       if (!ex.images || ex.images.length === 0 || !ex.formCues) {
         // We do a case-insensitive search to match old defaults to the new JSON dataset
-        const seedMatch = SEED_EXERCISES.find(s => s.name.toLowerCase() === ex.name.toLowerCase());
+        let seedMatch = SEED_EXERCISES.find(s => s.name.toLowerCase() === ex.name.toLowerCase());
+        
+        // Fallback 1: The new dataset name contains our old legacy name (e.g. "Barbell Bench Press - Medium Grip" contains "Barbell Bench Press")
+        if (!seedMatch) {
+          seedMatch = SEED_EXERCISES.find(s => s.name.toLowerCase().includes(ex.name.toLowerCase()));
+        }
+
+        // Fallback 2: Our old legacy name contains the new dataset name
+        if (!seedMatch) {
+          seedMatch = SEED_EXERCISES.find(s => ex.name.toLowerCase().includes(s.name.toLowerCase()));
+        }
+
         if (seedMatch) {
           await db.exercises.update(ex.id, {
             images: seedMatch.images,
