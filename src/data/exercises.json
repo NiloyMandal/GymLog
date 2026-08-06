@@ -16982,7 +16982,7 @@
     "name": "Lat Pulldown",
     "muscleGroup": "Back",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0007.gif",
     "formCues": [
       "Retract shoulder blades",
       "Pull elbows down to ribs",
@@ -16994,7 +16994,7 @@
     "name": "T-Bar Row",
     "muscleGroup": "Back",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0010.gif",
     "formCues": [
       "Hinge at hips with flat back",
       "Drive elbows behind torso",
@@ -17006,7 +17006,7 @@
     "name": "Seated Cable Row",
     "muscleGroup": "Back",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0159.gif",
     "formCues": [
       "Keep torso upright",
       "Do not swing backward",
@@ -17018,7 +17018,7 @@
     "name": "Single-Arm Dumbbell Row",
     "muscleGroup": "Back",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0293.gif",
     "formCues": [
       "Brace opposite hand on bench",
       "Pull weight toward hip",
@@ -17030,7 +17030,7 @@
     "name": "Barbell Biceps Curl",
     "muscleGroup": "Arms",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0023.gif",
     "formCues": [
       "Keep elbows pinned to sides",
       "Do not swing hips",
@@ -17042,7 +17042,7 @@
     "name": "Preacher Curl",
     "muscleGroup": "Arms",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0059.gif",
     "formCues": [
       "Rest upper arm flat on pad",
       "Lower bar with control",
@@ -17054,7 +17054,7 @@
     "name": "Seated Dumbbell Overhead Press",
     "muscleGroup": "Shoulders",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0091.gif",
     "formCues": [
       "Press dumbbells in upward arc",
       "Keep wrists stacked over elbows",
@@ -17066,7 +17066,7 @@
     "name": "Dumbbell Lateral Raise",
     "muscleGroup": "Shoulders",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0311.gif",
     "formCues": [
       "Slight bend in elbows",
       "Raise arms to shoulder height",
@@ -17078,7 +17078,7 @@
     "name": "Cable Face Pull",
     "muscleGroup": "Shoulders",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0150.gif",
     "formCues": [
       "Use rope attachment",
       "Pull towards upper face/eyes",
@@ -17090,7 +17090,7 @@
     "name": "Dumbbell Shrugs",
     "muscleGroup": "Shoulders",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0285.gif",
     "formCues": [
       "Elevate shoulders straight up",
       "Hold squeeze for 1 second",
@@ -17113,7 +17113,7 @@
     "name": "Barbell Bench Press (Flat)",
     "muscleGroup": "Chest",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0025.gif",
     "formCues": [
       "Retract shoulder blades",
       "Plant feet firmly on floor",
@@ -17125,7 +17125,7 @@
     "name": "Incline Dumbbell Press (30°)",
     "muscleGroup": "Chest",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/3545.gif",
     "formCues": [
       "Set bench angle to 30 degrees",
       "Lower dumbbells to upper chest",
@@ -17137,7 +17137,7 @@
     "name": "Pec Deck Machine Fly",
     "muscleGroup": "Chest",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/1716.gif",
     "formCues": [
       "Keep slight bend in elbows",
       "Squeeze chest at center",
@@ -17149,7 +17149,7 @@
     "name": "High-to-Low Cable Crossover",
     "muscleGroup": "Chest",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/1320.gif",
     "formCues": [
       "Set pulleys to high position",
       "Bring hands together at waist level",
@@ -17161,7 +17161,7 @@
     "name": "Triceps Rope Pushdown",
     "muscleGroup": "Arms",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0194.gif",
     "formCues": [
       "Keep upper arms stationary",
       "Spread rope apart at bottom",
@@ -17173,7 +17173,7 @@
     "name": "EZ-Bar Skull Crusher",
     "muscleGroup": "Arms",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0060.gif",
     "formCues": [
       "Lower bar toward forehead/behind head",
       "Keep elbows pointing straight up",
@@ -17185,7 +17185,7 @@
     "name": "Machine Shoulder Press",
     "muscleGroup": "Shoulders",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0997.gif",
     "formCues": [
       "Press handles overhead",
       "Keep upper back flat against pad",
@@ -17197,7 +17197,7 @@
     "name": "Single-Arm Cable Lateral Raise",
     "muscleGroup": "Shoulders",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0178.gif",
     "formCues": [
       "Keep constant tension at bottom",
       "Raise handle to shoulder height",
@@ -17209,7 +17209,7 @@
     "name": "Reverse Pec Deck Fly",
     "muscleGroup": "Shoulders",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0993.gif",
     "formCues": [
       "Press chest against pad",
       "Sweep arms outward behind torso",
@@ -17221,7 +17221,7 @@
     "name": "Hanging Leg / Knee Raise",
     "muscleGroup": "Core",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/2355.gif",
     "formCues": [
       "Tilt pelvis upward at top",
       "Avoid swinging",
@@ -17233,7 +17233,7 @@
     "name": "Lying Abdominal Crunch",
     "muscleGroup": "Core",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/1708.gif",
     "formCues": [
       "Exhale fully at top contraction",
       "Keep lower back on mat",
@@ -17245,7 +17245,7 @@
     "name": "Plank Hold",
     "muscleGroup": "Core",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/3544.gif",
     "formCues": [
       "Keep body straight from head to heels",
       "Brace core and squeeze glutes",
@@ -17257,7 +17257,7 @@
     "name": "Alternating Dumbbell Curl",
     "muscleGroup": "Arms",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/1649.gif",
     "formCues": [
       "Supinate wrist upward at top",
       "Keep elbows fixed",
@@ -17269,7 +17269,7 @@
     "name": "Incline Dumbbell Hammer Curl",
     "muscleGroup": "Arms",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0320.gif",
     "formCues": [
       "Keep palms facing each other",
       "Let arms hang straight down on incline",
@@ -17281,7 +17281,7 @@
     "name": "Overhead Cable Triceps Extension",
     "muscleGroup": "Arms",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0194.gif",
     "formCues": [
       "Keep elbows pointed forward",
       "Extend arms fully overhead",
@@ -17293,7 +17293,7 @@
     "name": "Parallel Bar Dips",
     "muscleGroup": "Arms",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0709.gif",
     "formCues": [
       "Keep torso upright to target triceps",
       "Lower until elbows reach 90 degrees",
@@ -17305,7 +17305,7 @@
     "name": "Cable Concentration Curl",
     "muscleGroup": "Arms",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/1631.gif",
     "formCues": [
       "Lock upper arm in fixed position",
       "Squeeze bicep peak at top",
@@ -17317,7 +17317,7 @@
     "name": "Triceps Cable Kickback",
     "muscleGroup": "Arms",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0149.gif",
     "formCues": [
       "Keep upper arm parallel to floor",
       "Extend forearm back fully",
@@ -17329,7 +17329,7 @@
     "name": "Barbell Back Squat",
     "muscleGroup": "Legs",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/1461.gif",
     "formCues": [
       "Keep chest proud and core braced",
       "Squat to parallel or slightly below",
@@ -17341,7 +17341,7 @@
     "name": "45° Leg Press",
     "muscleGroup": "Legs",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/2287.gif",
     "formCues": [
       "Do not lock out knees at top",
       "Lower sled until 90-degree knee bend",
@@ -17353,7 +17353,7 @@
     "name": "Romanian Deadlift",
     "muscleGroup": "Legs",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0085.gif",
     "formCues": [
       "Hinge at hips with soft knees",
       "Keep bar/dumbbells close to shins",
@@ -17365,7 +17365,7 @@
     "name": "Lying Leg Curl",
     "muscleGroup": "Legs",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/0586.gif",
     "formCues": [
       "Keep hips pressed into pad",
       "Curl heels toward glutes",
@@ -17377,7 +17377,7 @@
     "name": "Leg Extension Machine",
     "muscleGroup": "Legs",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/2400.gif",
     "formCues": [
       "Align knee joint with machine pivot",
       "Pause and squeeze quads at top",
@@ -17389,7 +17389,7 @@
     "name": "Standing Calf Raise",
     "muscleGroup": "Legs",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/1372.gif",
     "formCues": [
       "Lower heels for full stretch",
       "Rise up onto balls of feet",
@@ -17401,7 +17401,7 @@
     "name": "Mountain Climbers",
     "muscleGroup": "Core",
     "defaultUnit": "kg",
-    "videoUrl": "/videos/placeholder.webm",
+    "videoUrl": "/videos/exercises/2466.gif",
     "formCues": [
       "Keep shoulders stacked over wrists",
       "Drive knees toward chest briskly",
