@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { X } from 'lucide-react';
+import { X, AlertCircle } from 'lucide-react';
 import { MUSCLE_GROUP_COLORS } from '../db';
-
+import ExerciseAnimation from './ExerciseAnimation';
 export default function ExerciseDemoModal({
   isOpen,
   onClose,

@@ -22,6 +22,8 @@ export default function ExerciseDetail() {
     getExercisePR(id).then(setPr);
   }, [id]);
 
+  const [chartMetric, setChartMetric] = useState('weight');
+
   if (!exercise) {
     return (
       <div className="flex min-h-full items-center justify-center">
@@ -29,8 +31,6 @@ export default function ExerciseDetail() {
       </div>
     );
   }
-
-  const [chartMetric, setChartMetric] = useState('weight');
 
   const chartData = history.map((h) => {
     let maxE1RM = 0;
