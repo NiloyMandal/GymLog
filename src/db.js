@@ -105,11 +105,11 @@ export async function seedDatabase() {
     let updated = 0;
     
     for (const ex of existingExercises) {
-      if (!ex.images || ex.images.length === 0 || !ex.formCues) {
+      if (!ex.videoUrl || ex.videoUrl === '/videos/placeholder.webm' || !ex.formCues || ex.images) {
         // We do a case-insensitive search to match old defaults to the new JSON dataset
         let seedMatch = SEED_EXERCISES.find(s => s.name.toLowerCase() === ex.name.toLowerCase());
         
-        // Fallback 1: The new dataset name contains our old legacy name (e.g. "Barbell Bench Press - Medium Grip" contains "Barbell Bench Press")
+        // Fallback 1: The new dataset name contains our old legacy name
         if (!seedMatch) {
           seedMatch = SEED_EXERCISES.find(s => s.name.toLowerCase().includes(ex.name.toLowerCase()));
         }
@@ -121,14 +121,15 @@ export async function seedDatabase() {
 
         if (seedMatch) {
           await db.exercises.update(ex.id, {
-            images: seedMatch.images,
-            formCues: seedMatch.formCues
+            videoUrl: seedMatch.videoUrl,
+            formCues: seedMatch.formCues,
+            images: undefined // Clear out old flipbook images if any
           });
           updated++;
         }
       }
     }
-    if (updated > 0) console.log(`Backfilled ${updated} exercises with images/formCues`);
+    if (updated > 0) console.log(`Backfilled ${updated} exercises with videoUrl/formCues`);
 
     // Insert any new exercises from the JSON that aren't in the DB yet
     const missingExercises = SEED_EXERCISES.filter(s => !existingNames.has(s.name));

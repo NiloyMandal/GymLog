@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { X, AlertCircle } from 'lucide-react';
 import { MUSCLE_GROUP_COLORS } from '../db';
-import ExerciseAnimation from './ExerciseAnimation';
 export default function ExerciseDemoModal({
   isOpen,
   onClose,
@@ -50,11 +49,16 @@ export default function ExerciseDemoModal({
         </div>
 
         {/* Media area */}
-        <div className="relative aspect-video w-full bg-black shrink-0 overflow-hidden border-b border-[var(--color-border)]">
-          {exercise.images && exercise.images.length > 0 ? (
-            <ExerciseAnimation images={exercise.images} />
+        <div className="relative flex aspect-video w-full shrink-0 items-center justify-center overflow-hidden border-b border-[var(--color-border)] bg-black">
+          {exercise.videoUrl ? (
+            <img 
+              src={exercise.videoUrl} 
+              alt={exercise.name} 
+              className="h-full w-full object-cover" 
+              loading="lazy"
+            />
           ) : (
-            <div className="flex h-full w-full items-center justify-center text-sm text-[var(--color-text-muted)] gap-2">
+            <div className="flex h-full w-full items-center justify-center gap-2 text-sm text-[var(--color-text-muted)]">
               <AlertCircle size={16} />
               Animation not available
             </div>
