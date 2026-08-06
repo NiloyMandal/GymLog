@@ -52,22 +52,22 @@ const SEED_ROUTINES_TEMPLATE = [
     "name": "Monday: Back & Biceps",
     "exerciseNames": [
       {
-        "name": "Lat Pulldown",
+        "name": "Cable Lat Pulldown",
         "targetSets": 3,
         "targetReps": "8-10"
       },
       {
-        "name": "T-Bar Row",
+        "name": "Lever T-Bar Row",
         "targetSets": 3,
         "targetReps": "8-10"
       },
       {
-        "name": "Seated Cable Row",
+        "name": "Cable Seated Row",
         "targetSets": 3,
         "targetReps": "10-12"
       },
       {
-        "name": "Single-Arm Dumbbell Row",
+        "name": "Dumbbell Single-Arm Row",
         "targetSets": 2,
         "targetReps": "10-12"
       },
@@ -77,7 +77,7 @@ const SEED_ROUTINES_TEMPLATE = [
         "targetReps": "10-12"
       },
       {
-        "name": "Preacher Curl",
+        "name": "EZ-Bar Preacher Curl",
         "targetSets": 3,
         "targetReps": "12-15"
       }
@@ -87,7 +87,7 @@ const SEED_ROUTINES_TEMPLATE = [
     "name": "Tuesday: Shoulders & Traps",
     "exerciseNames": [
       {
-        "name": "Seated Dumbbell Overhead Press",
+        "name": "Dumbbell Seated Shoulder Press",
         "targetSets": 3,
         "targetReps": "8-10"
       },
@@ -97,17 +97,17 @@ const SEED_ROUTINES_TEMPLATE = [
         "targetReps": "12-15"
       },
       {
-        "name": "Cable Face Pull",
+        "name": "Cable Rope Face Pull",
         "targetSets": 3,
         "targetReps": "12-15"
       },
       {
-        "name": "Dumbbell Shrugs",
+        "name": "Dumbbell Shrug",
         "targetSets": 3,
         "targetReps": "10-12"
       },
       {
-        "name": "Low-Intensity Steady Cardio",
+        "name": "Walking on Treadmill",
         "targetSets": 1,
         "targetReps": "15-20 min"
       }
@@ -117,32 +117,32 @@ const SEED_ROUTINES_TEMPLATE = [
     "name": "Wednesday: Chest & Triceps",
     "exerciseNames": [
       {
-        "name": "Barbell Bench Press (Flat)",
+        "name": "Barbell Bench Press",
         "targetSets": 3,
         "targetReps": "6-8"
       },
       {
-        "name": "Incline Dumbbell Press (30°)",
+        "name": "Dumbbell Incline Bench Press",
         "targetSets": 3,
         "targetReps": "8-10"
       },
       {
-        "name": "Pec Deck Machine Fly",
+        "name": "Lever Pec Deck Fly",
         "targetSets": 3,
         "targetReps": "12-15"
       },
       {
-        "name": "High-to-Low Cable Crossover",
+        "name": "Cable High-to-Low Crossover",
         "targetSets": 2,
         "targetReps": "12-15"
       },
       {
-        "name": "Triceps Rope Pushdown",
+        "name": "Cable Triceps Pushdown (Rope)",
         "targetSets": 3,
         "targetReps": "10-12"
       },
       {
-        "name": "EZ-Bar Skull Crusher",
+        "name": "EZ-Bar Lying Triceps Extension",
         "targetSets": 3,
         "targetReps": "10-12"
       }
@@ -152,32 +152,32 @@ const SEED_ROUTINES_TEMPLATE = [
     "name": "Thursday: Shoulders, Rear Delts & Core",
     "exerciseNames": [
       {
-        "name": "Machine Shoulder Press",
+        "name": "Lever Seated Shoulder Press",
         "targetSets": 3,
         "targetReps": "10-12"
       },
       {
-        "name": "Single-Arm Cable Lateral Raise",
+        "name": "Cable One-Arm Lateral Raise",
         "targetSets": 3,
         "targetReps": "12-15"
       },
       {
-        "name": "Reverse Pec Deck Fly",
+        "name": "Lever Reverse Fly",
         "targetSets": 3,
         "targetReps": "12-15"
       },
       {
-        "name": "Hanging Leg / Knee Raise",
+        "name": "Hanging Leg Raise",
         "targetSets": 3,
         "targetReps": "10-15"
       },
       {
-        "name": "Lying Abdominal Crunch",
+        "name": "Crunch",
         "targetSets": 3,
         "targetReps": "15-20"
       },
       {
-        "name": "Plank Hold",
+        "name": "Front Plank",
         "targetSets": 3,
         "targetReps": "45-60s"
       }
@@ -187,22 +187,22 @@ const SEED_ROUTINES_TEMPLATE = [
     "name": "Friday: Arms Focus",
     "exerciseNames": [
       {
-        "name": "Alternating Dumbbell Curl",
+        "name": "Dumbbell Alternating Biceps Curl",
         "targetSets": 3,
         "targetReps": "10-12"
       },
       {
-        "name": "Incline Dumbbell Hammer Curl",
+        "name": "Dumbbell Incline Hammer Curl",
         "targetSets": 3,
         "targetReps": "10-12"
       },
       {
-        "name": "Overhead Cable Triceps Extension",
+        "name": "Cable Overhead Triceps Extension",
         "targetSets": 3,
         "targetReps": "10-12"
       },
       {
-        "name": "Parallel Bar Dips",
+        "name": "Triceps Dip",
         "targetSets": 3,
         "targetReps": "8-12"
       },
@@ -212,7 +212,7 @@ const SEED_ROUTINES_TEMPLATE = [
         "targetReps": "12-15"
       },
       {
-        "name": "Triceps Cable Kickback",
+        "name": "Cable Triceps Kickback",
         "targetSets": 2,
         "targetReps": "12-15"
       }
@@ -222,37 +222,37 @@ const SEED_ROUTINES_TEMPLATE = [
     "name": "Saturday: Legs, Core & Cardio",
     "exerciseNames": [
       {
-        "name": "Barbell Back Squat",
+        "name": "Barbell Full Squat",
         "targetSets": 3,
         "targetReps": "6-8"
       },
       {
-        "name": "45° Leg Press",
+        "name": "Sled 45° Leg Press",
         "targetSets": 3,
         "targetReps": "10-12"
       },
       {
-        "name": "Romanian Deadlift",
+        "name": "Barbell Romanian Deadlift",
         "targetSets": 3,
         "targetReps": "8-10"
       },
       {
-        "name": "Lying Leg Curl",
+        "name": "Lever Lying Leg Curl",
         "targetSets": 3,
         "targetReps": "10-12"
       },
       {
-        "name": "Leg Extension Machine",
+        "name": "Lever Leg Extension",
         "targetSets": 3,
         "targetReps": "12-15"
       },
       {
-        "name": "Standing Calf Raise",
+        "name": "Lever Standing Calf Raise",
         "targetSets": 4,
         "targetReps": "12-15"
       },
       {
-        "name": "Mountain Climbers",
+        "name": "Mountain Climber",
         "targetSets": 3,
         "targetReps": "15-20"
       }
