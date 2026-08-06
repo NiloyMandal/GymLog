@@ -195,7 +195,7 @@ export default function Dashboard() {
       </div>
 
       {/* Recent Workouts */}
-      <div>
+      <div className="mb-8">
         <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
           Recent Workouts
         </h2>
@@ -229,6 +229,12 @@ export default function Dashboard() {
             })}
           </div>
         )}
+      </div>
+
+      <div className="pb-8 pt-4 text-center">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-muted)]">
+          Made with ❤️ by Niloy
+        </p>
       </div>
     </div>
   );

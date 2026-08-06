@@ -451,6 +451,12 @@ export default function Progress() {
           )}
         </div>
       )}
+
+      <div className="pb-8 pt-6 text-center">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-muted)]">
+          Made with ❤️ by Niloy
+        </p>
+      </div>
     </div>
   );
 }

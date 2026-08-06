@@ -285,9 +285,14 @@ export default function Settings() {
       </button>
 
       {/* Version */}
-      <p className="mt-8 text-center text-xs text-[var(--color-text-muted)]">
-        GymLog v1.0.0 · Data stored locally on your device
-      </p>
+      <div className="mt-8 pb-8 text-center space-y-2">
+        <p className="text-xs text-[var(--color-text-muted)]">
+          GymLog v1.0.0 · Data stored locally on your device
+        </p>
+        <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-muted)]">
+          Made with ❤️ by Niloy
+        </p>
+      </div>
 
       {/* Reset Confirmation */}
       {showReset && (
