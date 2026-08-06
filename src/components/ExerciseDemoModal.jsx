@@ -54,7 +54,7 @@ export default function ExerciseDemoModal({
             <img 
               src={exercise.videoUrl} 
               alt={exercise.name} 
-              className="h-full w-full object-cover" 
+              className="h-full w-full object-contain" 
               loading="lazy"
             />
           ) : (
