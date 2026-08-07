@@ -1,8 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db, MUSCLE_GROUP_COLORS, MUSCLE_GROUP_LABELS } from '../db';
+import { useMemo } from 'react';
+import { db, MUSCLE_GROUP_COLORS } from '../db';
 import { useSettings } from '../hooks/useSettings';
 import { isNewPR } from '../utils/pr';
+import { getLocalDateString } from '../utils/date';
 import { displayWeight, inputToKg } from '../utils/units';
 import SetLogger from '../components/SetLogger';
 import RestTimer from '../components/RestTimer';
@@ -10,13 +13,37 @@ import Confetti from '../components/Confetti';
 import ExerciseDemoModal from '../components/ExerciseDemoModal';
 import {
   Play, Square, Plus, ChevronDown, ChevronUp, X,
-  Clock, Dumbbell, Trophy, Search, Check, PlayCircle
+  Clock, Dumbbell, Trophy, Check, PlayCircle
 } from 'lucide-react';
 
 export default function LogWorkout() {
+  const navigate = useNavigate();
   const { settings } = useSettings();
   const routines = useLiveQuery(() => db.routines.toArray());
   const exercises = useLiveQuery(() => db.exercises.toArray());
+
+  const sortedRoutines = useMemo(() => {
+    if (!routines) return [];
+    
+    const weekDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    
+    const getWeekdayIndex = (name) => {
+      const lowerName = name.toLowerCase();
+      for (let i = 0; i < weekDays.length; i++) {
+        if (lowerName.includes(weekDays[i])) {
+          return i;
+        }
+      }
+      return 7;
+    };
+
+    return [...routines].sort((a, b) => {
+      const idxA = getWeekdayIndex(a.name);
+      const idxB = getWeekdayIndex(b.name);
+      if (idxA !== idxB) return idxA - idxB;
+      return a.name.localeCompare(b.name);
+    });
+  }, [routines]);
 
   // Workout state
   const [phase, setPhase] = useState('start'); // 'start' | 'active' | 'done'
@@ -65,7 +92,7 @@ export default function LogWorkout() {
     return () => releaseWakeLock();
   }, [phase, requestWakeLock, releaseWakeLock]);
 
-  // Draft auto-resume
+  // Draft auto-resume + handle picked exercise from Exercises tab
   useEffect(() => {
     async function loadDraft() {
       const draft = await db.draftWorkout.get(1);
@@ -75,6 +102,29 @@ export default function LogWorkout() {
         setStartTime(draft.startTime);
         setNotes(draft.notes || '');
         setPhase('active');
+
+        // Check if we came back from the Exercises tab with a picked exercise
+        const pickedId = sessionStorage.getItem('pickedExerciseId');
+        if (pickedId) {
+          sessionStorage.removeItem('pickedExerciseId');
+          const ex = await db.exercises.get(pickedId);
+          if (ex) {
+            const ghostSets = await loadGhostSets(ex.id);
+            setWorkoutExercises((prev) => [
+              ...prev,
+              {
+                exerciseId: ex.id,
+                name: ex.name,
+                muscleGroup: ex.muscleGroup,
+                videoUrl: ex.videoUrl,
+                formCues: ex.formCues,
+                ghostSets,
+                sets: [{ reps: 10, weight: 0, completed: false, isWarmup: false, rpe: null }],
+              },
+            ]);
+            setExpandedIdx(draft.exercises.length);
+          }
+        }
       }
     }
     loadDraft();
@@ -133,12 +183,16 @@ export default function LogWorkout() {
   // Demo Modal
   const [demoExercise, setDemoExercise] = useState(null);
 
-  // Add exercise modal
-  const [showExercisePicker, setShowExercisePicker] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-
   // Expanded exercise index
   const [expandedIdx, setExpandedIdx] = useState(0);
+
+  // Progress calculation
+  const totalSets = workoutExercises.reduce((acc, ex) => acc + ex.sets.length, 0);
+  const completedTotalSets = workoutExercises.reduce(
+    (acc, ex) => acc + ex.sets.filter((s) => s.completed).length,
+    0
+  );
+  const progressPercent = totalSets > 0 ? (completedTotalSets / totalSets) * 100 : 0;
 
   // Elapsed timer
   useEffect(() => {
@@ -191,7 +245,7 @@ export default function LogWorkout() {
               formCues: ex?.formCues,
               ghostSets,
               sets: Array.from({ length: re.targetSets }, () => ({
-                reps: re.targetReps,
+                reps: parseInt(re.targetReps, 10) || 10,
                 weight: 0,
                 completed: false,
                 isWarmup: false,
@@ -207,24 +261,20 @@ export default function LogWorkout() {
     }
   }, []);
 
-  const addExerciseToWorkout = useCallback(async (exercise) => {
-    const ghostSets = await loadGhostSets(exercise.id);
-    setWorkoutExercises((prev) => [
-      ...prev,
-      {
-        exerciseId: exercise.id,
-        name: exercise.name,
-        muscleGroup: exercise.muscleGroup,
-        videoUrl: exercise.videoUrl,
-        formCues: exercise.formCues,
-        ghostSets,
-        sets: [{ reps: 10, weight: 0, completed: false, isWarmup: false, rpe: null }],
-      },
-    ]);
-    setShowExercisePicker(false);
-    setSearchTerm('');
-    setExpandedIdx(workoutExercises.length);
-  }, [workoutExercises.length]);
+  // Navigate to Exercises tab to pick an exercise
+  const navigateToExercisePicker = useCallback(() => {
+    // Flush draft immediately so it persists before navigation
+    if (phase === 'active' && startTime) {
+      db.draftWorkout.put({
+        id: 1,
+        routineId: selectedRoutineId,
+        exercises: workoutExercises,
+        startTime,
+        notes,
+      });
+    }
+    navigate('/exercises?pick=1');
+  }, [phase, startTime, selectedRoutineId, workoutExercises, notes, navigate]);
 
   const updateSet = useCallback((exIdx, setIdx, field, value) => {
     setWorkoutExercises((prev) => {
@@ -265,6 +315,20 @@ export default function LogWorkout() {
         setShowConfetti(true);
       }
 
+      // Auto-advance logic
+      const willBeAllCompleted = ex.sets.every((s, i) => i === setIdx ? true : s.completed);
+      if (willBeAllCompleted) {
+        setWorkoutExercises((currentExercises) => {
+          const nextIdx = currentExercises.findIndex((e, idx) => idx > exIdx && !e.sets.every(s => s.completed));
+          if (nextIdx !== -1) {
+            setTimeout(() => setExpandedIdx((curr) => curr === exIdx ? nextIdx : curr), 600);
+          } else {
+            setTimeout(() => setExpandedIdx((curr) => curr === exIdx ? -1 : curr), 600);
+          }
+          return currentExercises;
+        });
+      }
+
       // Start rest timer
       setShowRestTimer(true);
     }
@@ -290,7 +354,7 @@ export default function LogWorkout() {
 
   const finishWorkout = useCallback(async () => {
     const endTime = Date.now();
-    const today = new Date().toISOString().split('T')[0];
+    const today = getLocalDateString(new Date());
 
     await db.workoutLogs.add({
       id: crypto.randomUUID(),
@@ -324,17 +388,7 @@ export default function LogWorkout() {
     setSelectedRoutineId(null);
   };
 
-  // Filter exercises for picker
-  const filteredExercises = exercises?.filter((ex) => {
-    if (!searchTerm) return true;
-    return ex.name.toLowerCase().includes(searchTerm.toLowerCase());
-  }) || [];
 
-  const groupedExercises = filteredExercises.reduce((acc, ex) => {
-    if (!acc[ex.muscleGroup]) acc[ex.muscleGroup] = [];
-    acc[ex.muscleGroup].push(ex);
-    return acc;
-  }, {});
 
   // ── START SCREEN ──
   if (phase === 'start') {
@@ -347,7 +401,7 @@ export default function LogWorkout() {
 
         {/* Routine Cards */}
         <div className="mb-6 space-y-3">
-          {routines?.map((routine) => (
+          {sortedRoutines?.map((routine) => (
             <button
               key={routine.id}
               onClick={() => startWorkout(routine.id)}
@@ -397,18 +451,18 @@ export default function LogWorkout() {
         <h1 className="mb-2 text-3xl font-black">Workout Complete!</h1>
         <p className="mb-8 text-[var(--color-text-secondary)]">Great work 💪</p>
 
-        <div className="mb-8 grid w-full max-w-sm grid-cols-3 gap-4">
-          <div className="rounded-xl bg-[var(--color-bg-card)] p-4 text-center">
-            <p className="text-2xl font-black text-[var(--color-accent)]">{formatTime(elapsed)}</p>
-            <p className="mt-1 text-xs text-[var(--color-text-muted)]">Duration</p>
+        <div className="mb-8 grid w-full max-w-sm grid-cols-3 gap-2">
+          <div className="rounded-xl bg-[var(--color-bg-card)] p-3 text-center">
+            <p className="text-xl font-black text-[var(--color-accent)] sm:text-2xl">{formatTime(elapsed)}</p>
+            <p className="mt-1 text-[10px] text-[var(--color-text-muted)]">Duration</p>
           </div>
-          <div className="rounded-xl bg-[var(--color-bg-card)] p-4 text-center">
-            <p className="text-2xl font-black text-[var(--color-accent)]">{totalSets}</p>
-            <p className="mt-1 text-xs text-[var(--color-text-muted)]">Sets</p>
+          <div className="rounded-xl bg-[var(--color-bg-card)] p-3 text-center">
+            <p className="text-xl font-black text-[var(--color-accent)] sm:text-2xl">{totalSets}</p>
+            <p className="mt-1 text-[10px] text-[var(--color-text-muted)]">Sets</p>
           </div>
-          <div className="rounded-xl bg-[var(--color-bg-card)] p-4 text-center">
-            <p className="text-2xl font-black text-[var(--color-accent)]">{totalVolume.toLocaleString()}</p>
-            <p className="mt-1 text-xs text-[var(--color-text-muted)]">{settings.unit}</p>
+          <div className="rounded-xl bg-[var(--color-bg-card)] p-3 text-center">
+            <p className="text-xl font-black text-[var(--color-accent)] truncate sm:text-2xl">{totalVolume.toLocaleString()}</p>
+            <p className="mt-1 text-[10px] text-[var(--color-text-muted)]">{settings.unit}</p>
           </div>
         </div>
 
@@ -425,20 +479,29 @@ export default function LogWorkout() {
   // ── ACTIVE WORKOUT ──
   return (
     <div className="min-h-full animate-fade-in">
-      {/* Top bar */}
-      <div className="sticky top-0 z-40 flex items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-bg-primary)]/95 px-4 py-3 backdrop-blur-xl">
-        <div className="flex items-center gap-2">
-          <Clock size={16} className="text-[var(--color-accent)]" />
-          <span className="font-mono text-lg font-bold text-[var(--color-accent)]">
-            {formatTime(elapsed)}
-          </span>
+      {/* Top bar with Progress */}
+      <div className="sticky top-0 z-40 bg-[var(--color-bg-primary)]/95 backdrop-blur-xl">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)]">
+          <div className="flex items-center gap-2">
+            <Clock size={16} className="text-[var(--color-accent)]" />
+            <span className="font-mono text-lg font-bold text-[var(--color-accent)]">
+              {formatTime(elapsed)}
+            </span>
+          </div>
+          <button
+            onClick={finishWorkout}
+            className="rounded-lg bg-[var(--color-accent)] px-4 py-2 text-sm font-bold text-black transition-all active:scale-95"
+          >
+            Finish
+          </button>
         </div>
-        <button
-          onClick={finishWorkout}
-          className="rounded-lg bg-[var(--color-accent)] px-4 py-2 text-sm font-bold text-black transition-all active:scale-95"
-        >
-          Finish
-        </button>
+        {/* Progress Bar */}
+        <div className="h-1 w-full bg-[var(--color-bg-elevated)]">
+          <div 
+            className="h-full bg-[var(--color-accent)] transition-all duration-500 ease-out" 
+            style={{ width: `${progressPercent}%` }} 
+          />
+        </div>
       </div>
 
       {/* Exercises */}
@@ -446,30 +509,37 @@ export default function LogWorkout() {
         {workoutExercises.map((ex, exIdx) => {
           const isExpanded = expandedIdx === exIdx;
           const completedSets = ex.sets.filter((s) => s.completed).length;
+          const isCompleted = completedSets === ex.sets.length && ex.sets.length > 0;
 
           return (
             <div
               key={exIdx}
-              className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] transition-all"
+              className={`overflow-hidden rounded-2xl border transition-all duration-500 ${
+                isExpanded
+                  ? 'border-[var(--color-accent)]/50 bg-[var(--color-bg-card)] shadow-lg shadow-black/5 dark:shadow-white/5'
+                  : isCompleted
+                  ? 'border-green-500/20 bg-green-500/5 opacity-80'
+                  : 'border-[var(--color-border)] bg-[var(--color-bg-card)]'
+              }`}
             >
               {/* Exercise Header */}
-              <div className="flex w-full items-center justify-between px-4 py-3.5">
+              <div className="flex w-full items-center justify-between gap-2 px-3 py-3.5">
                 <button
                   onClick={() => setExpandedIdx(isExpanded ? -1 : exIdx)}
-                  className="flex flex-1 items-center gap-3 text-left"
+                  className="flex min-w-0 flex-1 items-center gap-2.5 text-left"
                 >
                   <div
-                    className="h-2.5 w-2.5 rounded-full"
+                    className="h-2.5 w-2.5 shrink-0 rounded-full"
                     style={{ backgroundColor: MUSCLE_GROUP_COLORS[ex.muscleGroup] }}
                   />
-                  <div>
-                    <h3 className="font-bold">{ex.name}</h3>
+                  <div className="min-w-0">
+                    <h3 className="font-bold truncate">{ex.name}</h3>
                     <p className="text-xs text-[var(--color-text-muted)]">
                       {completedSets}/{ex.sets.length} sets done
                     </p>
                   </div>
                 </button>
-                <div className="flex items-center gap-2">
+                <div className="flex shrink-0 items-center gap-1.5">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -498,19 +568,38 @@ export default function LogWorkout() {
 
               {/* Sets */}
               {isExpanded && (
-                <div className="border-t border-[var(--color-border)] px-4 pb-4 pt-3 animate-fade-in">
+                <div className="border-t border-[var(--color-border)] px-4 pb-4 pt-4 animate-fade-in">
+                  {/* GIF and Cues */}
+                  {ex.videoUrl && (
+                    <div className="mb-4 flex items-start gap-3 rounded-xl bg-[var(--color-bg-secondary)] p-2">
+                      <div className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-black/5 dark:bg-white/5">
+                        <img 
+                          src={ex.videoUrl} 
+                          alt={ex.name} 
+                          className="h-full w-full object-contain"
+                          loading="lazy" 
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0 py-1">
+                        <p className="text-xs font-medium text-[var(--color-text-secondary)] line-clamp-3">
+                          {ex.formCues?.length ? ex.formCues.join(' ') : 'Focus on form and controlled movements.'}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
                   {/* Column headers */}
-                  <div className="mb-2 grid grid-cols-[1fr_2fr_2fr_auto] items-center gap-2 px-1">
-                    <span className="text-[10px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
+                  <div className="mb-2 flex items-center gap-2 px-1">
+                    <span className="shrink-0 text-[10px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]" style={{ width: '28px', textAlign: 'center' }}>
                       Set
                     </span>
-                    <span className="text-center text-[10px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
+                    <span className="flex-1 min-w-0 text-center text-[10px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
                       {settings.unit}
                     </span>
-                    <span className="text-center text-[10px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
+                    <span className="flex-1 min-w-0 text-center text-[10px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
                       Reps
                     </span>
-                    <span className="w-12" />
+                    <span className="shrink-0" style={{ width: '40px' }} />
                   </div>
 
                   {ex.sets.map((set, setIdx) => {
@@ -559,7 +648,7 @@ export default function LogWorkout() {
 
         {/* Add Exercise Button */}
         <button
-          onClick={() => setShowExercisePicker(true)}
+          onClick={navigateToExercisePicker}
           className="flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-[var(--color-border-light)] bg-transparent p-4 text-sm font-medium text-[var(--color-text-secondary)] transition-all active:scale-[0.98] hover:border-[var(--color-accent)]/40"
         >
           <Plus size={18} /> Add Exercise
@@ -577,62 +666,6 @@ export default function LogWorkout() {
         </div>
       </div>
 
-      {/* Exercise Picker Modal */}
-      {showExercisePicker && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className="w-full max-w-lg rounded-t-3xl bg-[var(--color-bg-secondary)] animate-slide-up" style={{ maxHeight: '80dvh' }}>
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-4">
-              <h2 className="text-lg font-bold">Add Exercise</h2>
-              <button
-                onClick={() => { setShowExercisePicker(false); setSearchTerm(''); }}
-                className="rounded-full p-2 hover:bg-[var(--color-bg-elevated)]"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            <div className="px-4 py-3">
-              <div className="relative">
-                <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)]" />
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Search exercises..."
-                  className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-primary)] py-3 pl-10 pr-4 text-sm focus:border-[var(--color-accent)]/50 focus:outline-none"
-                  autoFocus
-                />
-              </div>
-            </div>
-
-            <div className="overflow-y-auto px-4 pb-8" style={{ maxHeight: '55dvh' }}>
-              {Object.entries(groupedExercises).map(([group, exs]) => (
-                <div key={group} className="mb-4">
-                  <h3
-                    className="mb-2 text-xs font-bold uppercase tracking-wider"
-                    style={{ color: MUSCLE_GROUP_COLORS[group] }}
-                  >
-                    {MUSCLE_GROUP_LABELS[group]}
-                  </h3>
-                  {exs.map((ex) => (
-                    <button
-                      key={ex.id}
-                      onClick={() => addExerciseToWorkout(ex)}
-                      className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm transition-colors hover:bg-[var(--color-bg-elevated)] active:bg-[var(--color-bg-elevated)]"
-                    >
-                      <div
-                        className="h-2 w-2 rounded-full"
-                        style={{ backgroundColor: MUSCLE_GROUP_COLORS[ex.muscleGroup] }}
-                      />
-                      {ex.name}
-                    </button>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Rest Timer */}
       {showRestTimer && (

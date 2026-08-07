@@ -68,52 +68,42 @@ export default function RestTimer({ seconds, onDone, onSkip }) {
   const secs = remaining % 60;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[var(--color-bg-primary)]/95 backdrop-blur-xl animate-fade-in">
-      <p className="mb-6 text-sm font-medium uppercase tracking-widest text-[var(--color-text-muted)]">
-        Rest Timer
-      </p>
-
-      {/* Circular progress */}
-      <div className="relative mb-8">
-        <svg width="140" height="140" viewBox="0 0 120 120" className="-rotate-90">
+    <div className="fixed bottom-10 left-1/2 z-50 -translate-x-1/2 flex items-center gap-4 rounded-full border border-[var(--color-border)] bg-[var(--color-bg-primary)]/90 px-4 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.4)] backdrop-blur-md animate-slide-up">
+      {/* Mini Circular progress */}
+      <div className="relative flex items-center justify-center">
+        <svg width="28" height="28" viewBox="0 0 28 28" className="-rotate-90">
           {/* Background circle */}
           <circle
-            cx="60"
-            cy="60"
-            r="54"
-            fill="none"
-            stroke="var(--color-border)"
-            strokeWidth="6"
+            cx="14" cy="14" r="12"
+            fill="none" stroke="var(--color-border)" strokeWidth="2.5"
           />
           {/* Progress circle */}
           <circle
-            cx="60"
-            cy="60"
-            r="54"
-            fill="none"
-            stroke="var(--color-accent)"
-            strokeWidth="6"
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            strokeDashoffset={strokeDashoffset}
+            cx="14" cy="14" r="12"
+            fill="none" stroke="var(--color-accent)" strokeWidth="2.5" strokeLinecap="round"
+            strokeDasharray={2 * Math.PI * 12}
+            strokeDashoffset={2 * Math.PI * 12 * (1 - progress)}
             className="transition-[stroke-dashoffset] duration-1000 ease-linear"
-            style={{
-              filter: 'drop-shadow(0 0 8px rgba(163, 230, 53, 0.4))',
-            }}
           />
         </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-4xl font-black tabular-nums">
-            {minutes}:{secs.toString().padStart(2, '0')}
-          </span>
-        </div>
       </div>
+
+      <div className="flex flex-col">
+        <span className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] leading-none mb-0.5">
+          Rest
+        </span>
+        <span className="font-mono text-base font-black tabular-nums leading-none text-[var(--color-text-primary)]">
+          {minutes}:{secs.toString().padStart(2, '0')}
+        </span>
+      </div>
+
+      <div className="h-6 w-px bg-[var(--color-border)] mx-1" />
 
       <button
         onClick={onSkip}
-        className="flex items-center gap-2 rounded-xl bg-[var(--color-bg-elevated)] px-6 py-3 text-sm font-medium text-[var(--color-text-secondary)] transition-all active:scale-95 hover:bg-[var(--color-bg-tertiary)]"
+        className="flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-bold text-[var(--color-text-muted)] transition-colors active:scale-95 hover:text-[var(--color-text-primary)]"
       >
-        <X size={16} /> Skip
+        <X size={14} strokeWidth={3} /> Skip
       </button>
     </div>
   );

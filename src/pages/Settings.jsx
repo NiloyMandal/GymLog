@@ -102,20 +102,20 @@ export default function Settings() {
 
       {/* Unit Toggle */}
       <div className="mb-3 rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-accent)]/10">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent)]/10">
               <Scale size={18} className="text-[var(--color-accent)]" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-sm font-bold">Weight Unit</p>
-              <p className="text-xs text-[var(--color-text-muted)]">Used across the app</p>
+              <p className="text-xs text-[var(--color-text-muted)] truncate">Used across the app</p>
             </div>
           </div>
-          <div className="flex rounded-lg bg-[var(--color-bg-elevated)] p-0.5">
+          <div className="flex shrink-0 rounded-lg bg-[var(--color-bg-elevated)] p-0.5">
             <button
               onClick={() => setSetting('unit', 'kg')}
-              className={`rounded-md px-4 py-2 text-xs font-bold transition-all ${
+              className={`rounded-md px-3 py-2 text-xs font-bold transition-all ${
                 settings.unit === 'kg'
                   ? 'bg-[var(--color-accent)] text-black'
                   : 'text-[var(--color-text-muted)]'
@@ -125,7 +125,7 @@ export default function Settings() {
             </button>
             <button
               onClick={() => setSetting('unit', 'lb')}
-              className={`rounded-md px-4 py-2 text-xs font-bold transition-all ${
+              className={`rounded-md px-3 py-2 text-xs font-bold transition-all ${
                 settings.unit === 'lb'
                   ? 'bg-[var(--color-accent)] text-black'
                   : 'text-[var(--color-text-muted)]'
@@ -150,12 +150,12 @@ export default function Settings() {
             </p>
           </div>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(56px,1fr))] gap-2">
           {restTimerOptions.map((secs) => (
             <button
               key={secs}
               onClick={() => setSetting('restTimerSeconds', secs)}
-              className={`rounded-lg px-3 py-2 text-xs font-bold transition-all ${
+              className={`rounded-lg px-2 py-2 text-xs font-bold transition-all ${
                 settings.restTimerSeconds === secs
                   ? 'bg-[var(--color-accent)] text-black'
                   : 'bg-[var(--color-bg-elevated)] text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]'
@@ -225,17 +225,18 @@ export default function Settings() {
         className="mb-3 flex w-full flex-col gap-2 rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4 text-left transition-all active:scale-[0.99]"
       >
         <div className="flex w-full items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-green-500/10">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-green-500/10">
             <Download size={18} className="text-green-500" />
           </div>
-          <div className="flex-1">
+          <div className="min-w-0 flex-1">
             <p className="text-sm font-bold">Backup & Export Data</p>
-            <p className="text-xs text-[var(--color-text-muted)]">Download all data as JSON</p>
+            <p className="text-xs text-[var(--color-text-muted)] truncate">Download all data as JSON</p>
           </div>
           {needsBackup && (
-            <div className="flex items-center gap-1 text-[var(--color-warning)]">
+            <div className="flex shrink-0 items-center gap-1 text-[var(--color-warning)]">
               <AlertTriangle size={14} />
-              <span className="text-[10px] font-bold uppercase tracking-wider">Backup Recommended</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider hidden sm:inline">Backup Recommended</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider sm:hidden">Backup</span>
             </div>
           )}
         </div>

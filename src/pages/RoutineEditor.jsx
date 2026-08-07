@@ -129,15 +129,15 @@ export default function RoutineEditor() {
               key={idx}
               className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-3"
             >
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <div className="flex min-w-0 flex-1 items-center gap-2">
                   <div
-                    className="h-2 w-2 rounded-full"
+                    className="h-2 w-2 shrink-0 rounded-full"
                     style={{ backgroundColor: MUSCLE_GROUP_COLORS[ex.muscleGroup] }}
                   />
-                  <span className="text-sm font-medium">{ex.name}</span>
+                  <span className="text-sm font-medium truncate">{ex.name}</span>
                 </div>
-                <div className="flex items-center gap-0.5">
+                <div className="flex shrink-0 items-center gap-0.5">
                   <button
                     onClick={() => moveExercise(idx, -1)}
                     disabled={idx === 0}
@@ -161,14 +161,14 @@ export default function RoutineEditor() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center gap-3">
                 <div className="flex items-center gap-2">
                   <label className="text-xs text-[var(--color-text-muted)]">Sets</label>
                   <input
                     type="number"
                     value={re.targetSets}
                     onChange={(e) => updateExercise(idx, 'targetSets', Math.max(1, Number(e.target.value)))}
-                    className="h-8 w-14 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-primary)] text-center text-sm font-bold focus:border-[var(--color-accent)] focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                    className="h-8 w-12 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-primary)] text-center text-sm font-bold focus:border-[var(--color-accent)] focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                   />
                 </div>
                 <span className="text-[var(--color-text-muted)]">×</span>
@@ -178,7 +178,7 @@ export default function RoutineEditor() {
                     type="number"
                     value={re.targetReps}
                     onChange={(e) => updateExercise(idx, 'targetReps', Math.max(1, Number(e.target.value)))}
-                    className="h-8 w-14 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-primary)] text-center text-sm font-bold focus:border-[var(--color-accent)] focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                    className="h-8 w-12 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-primary)] text-center text-sm font-bold focus:border-[var(--color-accent)] focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                   />
                 </div>
               </div>

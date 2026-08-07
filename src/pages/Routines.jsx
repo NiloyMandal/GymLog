@@ -1,14 +1,37 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useNavigate } from 'react-router-dom';
+import { useMemo, useState } from 'react';
 import { db, MUSCLE_GROUP_COLORS } from '../db';
 import { Plus, Edit, Trash2, Dumbbell } from 'lucide-react';
-import { useState } from 'react';
 
 export default function Routines() {
   const routines = useLiveQuery(() => db.routines.toArray());
   const exercises = useLiveQuery(() => db.exercises.toArray());
   const navigate = useNavigate();
   const [deleteId, setDeleteId] = useState(null);
+
+  const sortedRoutines = useMemo(() => {
+    if (!routines) return [];
+    
+    const weekDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    
+    const getWeekdayIndex = (name) => {
+      const lowerName = name.toLowerCase();
+      for (let i = 0; i < weekDays.length; i++) {
+        if (lowerName.includes(weekDays[i])) {
+          return i;
+        }
+      }
+      return 7;
+    };
+
+    return [...routines].sort((a, b) => {
+      const idxA = getWeekdayIndex(a.name);
+      const idxB = getWeekdayIndex(b.name);
+      if (idxA !== idxB) return idxA - idxB;
+      return a.name.localeCompare(b.name);
+    });
+  }, [routines]);
 
   const exerciseMap = {};
   exercises?.forEach((ex) => { exerciseMap[ex.id] = ex; });
@@ -40,7 +63,7 @@ export default function Routines() {
       )}
 
       <div className="space-y-3">
-        {routines?.map((routine) => (
+        {sortedRoutines?.map((routine) => (
           <div
             key={routine.id}
             className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4 transition-all"
@@ -70,11 +93,11 @@ export default function Routines() {
                 return (
                   <div key={i} className="flex items-center gap-2 text-sm">
                     <div
-                      className="h-1.5 w-1.5 rounded-full"
+                      className="h-1.5 w-1.5 shrink-0 rounded-full"
                       style={{ backgroundColor: MUSCLE_GROUP_COLORS[ex.muscleGroup] }}
                     />
-                    <span className="text-[var(--color-text-secondary)]">{ex.name}</span>
-                    <span className="ml-auto text-xs text-[var(--color-text-muted)]">
+                    <span className="min-w-0 flex-1 truncate text-[var(--color-text-secondary)]">{ex.name}</span>
+                    <span className="shrink-0 ml-auto text-xs text-[var(--color-text-muted)]">
                       {re.targetSets}×{re.targetReps}
                     </span>
                   </div>

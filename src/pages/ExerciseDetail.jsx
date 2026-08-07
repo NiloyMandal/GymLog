@@ -88,10 +88,10 @@ export default function ExerciseDetail() {
               Personal Record
             </span>
           </div>
-          <p className="text-3xl font-black">
-            {formatWeight(pr.weight, settings.unit)} <span className="text-lg font-medium text-[var(--color-text-secondary)]">{settings.unit}</span>
-            <span className="mx-2 text-lg text-[var(--color-text-muted)]">×</span>
-            {pr.reps} <span className="text-lg font-medium text-[var(--color-text-secondary)]">reps</span>
+          <p className="text-2xl font-black sm:text-3xl">
+            {formatWeight(pr.weight, settings.unit)} <span className="text-base font-medium text-[var(--color-text-secondary)] sm:text-lg">{settings.unit}</span>
+            <span className="mx-1.5 text-base text-[var(--color-text-muted)] sm:mx-2 sm:text-lg">×</span>
+            {pr.reps} <span className="text-base font-medium text-[var(--color-text-secondary)] sm:text-lg">reps</span>
           </p>
           {pr.date && (
             <p className="mt-1 text-xs text-[var(--color-text-muted)]">

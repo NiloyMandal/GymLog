@@ -31,7 +31,7 @@ function App() {
           <div className="flex h-[100dvh] flex-col bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] antialiased transition-colors duration-300">
             
             {/* Main scrollable content area */}
-            <main className="flex-1 overflow-y-auto overflow-x-hidden pb-safe">
+            <main className="flex-1 overflow-y-auto overflow-x-hidden pb-nav">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/workout" element={<LogWorkout />} />
